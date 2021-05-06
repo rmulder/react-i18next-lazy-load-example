@@ -1,0 +1,6 @@
+{
+  "selectedLanguage": "您选择的语言是: {{language, uppercase}}",
+  "numOfTimesSwitchingLanguage": "您已更换了语言{{count}}次",
+  "numOfTimesSwitchingLanguage_plural": "您已更换了语言{{count}}次",
+  "welcome": "欢迎来到奇幻的世界"
+}

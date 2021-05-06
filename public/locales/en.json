@@ -1,0 +1,6 @@
+{
+  "selectedLanguage": "Your selected language is: {{language, uppercase}}",
+  "numOfTimesSwitchingLanguage": "Your have switch language for {{count}} time",
+  "numOfTimesSwitchingLanguage_plural": "Your have switch language for {{count}} times",
+  "welcome": "Welcome to the world of wonder"
+}
