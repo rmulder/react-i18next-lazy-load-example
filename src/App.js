@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 
 import './i18n.config';
 
+const Tab1 = React.lazy(() => import("./tab1"));
+const Tab2 = React.lazy(() => import("./tab2"));
+
 const App = () => {
   const { t } = useTranslation();
+  const [selectedTab, selectTab] = useState(0);
   const [count, setCount] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const handleLanguageSelect = (event) => {
@@ -16,27 +20,53 @@ const App = () => {
 
   return (
     <div>
-      <label>
-        English
-        <input
-          type="radio"
-          value="en"
-          checked={selectedLanguage === 'en'}
-          onChange={handleLanguageSelect}
-        />
-      </label>
-      <label>
-        中文
-        <input
-          type="radio"
-          value="zh"
-          checked={selectedLanguage === 'zh'}
-          onChange={handleLanguageSelect}
-        />
-      </label>
-      <p>{t('selectedLanguage', { language: selectedLanguage })}</p>
-      <p>{t('numOfTimesSwitchingLanguage', { count })}</p>
-      <p>{t('welcome')}</p>
+      <p className='p-4 pb-0'>{t("title.language")}</p>
+      <div className='flex p-4'>
+        <label className='p-2'>
+          English
+          <input
+            readOnly
+            type='radio'
+            value='en'
+            checked={selectedLanguage === "en"}
+            onChange={handleLanguageSelect}
+          />
+        </label>
+        <label className='p-2'>
+          中文
+          <input
+            readOnly
+            type='radio'
+            value='zh'
+            checked={selectedLanguage === "zh"}
+            onChange={handleLanguageSelect}
+          />
+        </label>
+      </div>
+      <div className='grid grid-cols-2 gap-0'>
+        <button
+          className='p-4 border border-gray-400'
+          onClick={() => selectTab(0)}
+        >
+          {t("tab1.title")}
+        </button>
+        <button
+          className='p-4 border border-gray-400'
+          onClick={() => selectTab(1)}
+        >
+          {t("tab2.title")}
+        </button>
+      </div>
+      {selectedTab === 0 && (
+        <Suspense fallback='Loading...'>
+          <Tab1 />
+        </Suspense>
+      )}
+      {selectedTab === 1 && (
+        <Suspense fallback='Loading...'>
+          <Tab2 />
+        </Suspense>
+      )}
     </div>
   );
 }
