@@ -8,7 +8,7 @@ const Tab1 = React.lazy(() => import("./tab1"));
 const Tab2 = React.lazy(() => import("./tab2"));
 
 const App = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('app');
   const [selectedTab, selectTab] = useState(0);
   const [count, setCount] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -48,13 +48,13 @@ const App = () => {
           className='p-4 border border-gray-400'
           onClick={() => selectTab(0)}
         >
-          {t("tab1.title")}
+          {t("title.tab1")}
         </button>
         <button
           className='p-4 border border-gray-400'
           onClick={() => selectTab(1)}
         >
-          {t("tab2.title")}
+          {t("title.tab2")}
         </button>
       </div>
       {selectedTab === 0 && (

@@ -1,23 +1,15 @@
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-
-import en from './locales/en.json';
-import zh from './locales/zh.json';
+import HttpApi from "i18next-http-backend";
 
 i18n
-  .use(initReactI18next)
+  .use(HttpApi)
   .init({
-    resources: {
-      en: {
-        translation: en,
-      },
-      zh: {
-        translation: zh
-      },
-    },
     lng: "en",
     fallbackLng: "en",
     keySeparator: false,
+    backend: {
+      loadPath: "/locales/{{ns}}/{{lng}}.json" // The URL to download the locales
+    },
 
     interpolation: {
       escapeValue: false,
